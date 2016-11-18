@@ -6,11 +6,12 @@ from fonctions import cls, get_mot, checked
 fileName = "liste.de.mots.francais.frgut.txt"
 
 with open(fileName, "rb") as myFile:
-    a = myFile.readlines()
+    mots = myFile.readlines()
 
 replay = True
 
-while replay:  # On entre dans la console du jeu
+while replay:  # On commence une nouvelle partie
+    cls()
     nb_joueur = int(input('Veuillez entrer le nombre de joueurs [1/2] : '))
     if nb_joueur != 1 and nb_joueur != 2:  # On vérifie l'entrée
         break
@@ -36,7 +37,7 @@ while replay:  # On entre dans la console du jeu
         with open(choix_mots, "r") as liste:
             mots = liste.readlines()
 
-    mot = get_mot(a)  # On sélectionne un mot au hasard grâce au module random
+    mot = get_mot(mots)  # On sélectionne un mot au hasard
 
     lettres_trouvees = []
     i = 0

@@ -29,8 +29,11 @@ def get_mot(liste):
     """ Récupère un mot au hasard dans une liste et le rend utilisable
         pour le pendu"""
     r = random.randint(0, len(liste))
-    mot = liste[r].decode("latin-1")  # On le décode correctement
-    return sup_accent(mot)  # On enlève les accents indésirables
+    try:
+        mot = liste[r].decode("latin-1")  # On le décode correctement
+    except:  # Pas besoin de le décoder
+        mot = liste[r]
+    return sup_accent(mot).lower()  # On enlève les accents indésirables
 
 
 def checked(mot, lettres_trouvees):
