@@ -1,44 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import random
-import os
+from fonctions import cls, get_mot, checked
 
-
-def cls():
-    """ Efface l'écran """
-    os.system('cls' if os.name=='nt' else 'clear')
-
-
-def supprime_accent(ligne):
-        """ supprime les accents du texte source """
-        accents = {'a': ['à', 'ã', 'á', 'â'],
-                    'e': ['é', 'è', 'ê', 'ë'],
-                    'i': ['î', 'ï'],
-                    'u': ['ù', 'ü', 'û'],
-                    'o': ['ô', 'ö'],
-                    'y': ['ÿ'],
-                    'oe': ['œ'],
-                    '': ['\n']}
-        for (char, accented_chars) in accents.items():
-            for accented_char in accented_chars:
-                ligne = ligne.replace(accented_char, char)
-        return ligne
-
-
-def get_mot(liste):
-    """ Récupère un mot au hasard dans une liste et le rend utilisable
-        pour le pendu"""
-    r = random.randint(0, len(liste))
-    mot = liste[r].decode("latin-1")  # On le décode correctement
-    return supprime_accent(mot)  # On enlève les accents indésirables
-
-
-def checked(mot, lettres_trouvees):
-    """ Vérifie si toutes les lettres d'un mot sont trouvées """
-    for l in mot:
-        if l not in lettres_trouvees:
-            return False
-    return True
 
 fileName = "liste.de.mots.francais.frgut.txt"
 
@@ -99,7 +62,16 @@ while replay:  # On entre dans la console du jeu
             nb_coup -= 1  # Si la lettre n'est pas dans le mot on enlève un coup
 
     if checked(mot, lettres_trouvees):
-        rejouer = input("Bravo")
+        rejouer = input("Bravo, le mot étais bien {}"
+                        ", voulez vous rejouer ? [oui/non] : ".format(mot))
+    else:
+        rejouer = input("Mince vous n'avez pas trouvé le mot {},"
+                        " voulez vous rejouer ? [oui/non] : ".format(mot))
+
+    if rejouer.lower() != "oui":
+        replay = False
+
+
 
 
 
