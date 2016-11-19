@@ -2,6 +2,9 @@
 
 from fonctions import cls, get_mot, checked, clear_word
 from getpass import getpass
+from graphical_app import App
+
+app = App()
 
 replay = True
 
