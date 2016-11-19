@@ -2,6 +2,7 @@
 
 import os
 import random
+import string
 
 
 def cls():
@@ -9,8 +10,9 @@ def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def sup_accent(ligne):
-        """ supprime les accents du texte source """
+def clear_word(ligne):
+        """ supprime les charactères non compris dans string.ascii_letters"""
+        ligne_propre = ""
         accents = {'a': ['à', 'ã', 'á', 'â'],
                     'e': ['é', 'è', 'ê', 'ë'],
                     'i': ['î', 'ï'],
@@ -19,10 +21,15 @@ def sup_accent(ligne):
                     'y': ['ÿ'],
                     'oe': ['œ'],
                     '': ['\n']}
+        # On supprime d'abord les accents'
         for (char, accented_chars) in accents.items():
             for accented_char in accented_chars:
                 ligne = ligne.replace(accented_char, char)
-        return ligne
+        # Puis on supprime les charactères spéciaux
+        for letter in ligne:
+            if letter in string.ascii_letters:
+                ligne_propre += letter
+        return ligne_propre.lower()
 
 
 def get_mot(liste):
@@ -33,7 +40,7 @@ def get_mot(liste):
         mot = liste[r].decode("latin-1")  # On le décode correctement
     except:  # Pas besoin de le décoder
         mot = liste[r]
-    return sup_accent(mot).lower()  # On enlève les accents indésirables
+    return clear_word(mot).lower()  # On enlève les accents indésirables
 
 
 def checked(mot, lettres_trouvees):
