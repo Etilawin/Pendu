@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from fonctions import cls, get_mot, checked
+from getpass import getpass
 
 
 fileName = "liste.de.mots.francais.frgut.txt"
@@ -33,11 +34,20 @@ while replay:  # On commence une nouvelle partie
         choix_mots = input("Veuillez entrer un nom de fichier contenant une "
                            "liste de mots (laisser vide pour avoir la liste "
                            "par défaut) : ")
-    if choix_mots.lower() != "":
-        with open(choix_mots, "r") as liste:
-            mots = liste.readlines()
+        if choix_mots.lower() != "":
+            with open(choix_mots, "r") as liste:
+                mots = liste.readlines()
 
-    mot = get_mot(mots)  # On sélectionne un mot au hasard
+        mot = get_mot(mots)  # On sélectionne un mot au hasard
+    else:
+        while True:
+            cls()
+            print("Veuillez entrer deux fois le mot à trouver")
+            mot1 = getpass("Veuillez entrer le mot à faire deviner : ")
+            mot2 = getpass("Veuillez entrer à nouveau le mot : ")
+            if mot1 == mot2:
+                mot = mot1
+                break
 
     lettres_trouvees = []
     i = 0
