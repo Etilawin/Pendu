@@ -2,9 +2,6 @@
 
 from fonctions import cls, get_mot, checked, clear_word
 from getpass import getpass
-from graphical_app import App
-
-app = App()
 
 replay = True
 
@@ -42,7 +39,6 @@ while replay:  # On commence une nouvelle partie
         mot = get_mot(mots)  # On sélectionne un mot au hasard
     else:
         while True:
-            cls()
             print("Veuillez entrer deux fois le mot à trouver")
             mot1 = getpass("Veuillez entrer le mot à faire deviner : ")
             mot2 = getpass("Veuillez entrer à nouveau le mot : ")
@@ -51,10 +47,15 @@ while replay:  # On commence une nouvelle partie
                 break
 
     lettres_trouvees = []
+    lettres_entrees = []
+    lettre = ""
     i = 0
     trouve = False
     while (nb_coup) and (not checked(mot, lettres_trouvees)):
         cls()
+        if lettre in lettres_entrees:
+            print("Vous avez déjà entré cette lettre {}".format(lettre))
+        lettres_entrees.append(lettre)
         for l in mot:
             if l in lettres_trouvees:
               print(l, end='')
@@ -72,7 +73,6 @@ while replay:  # On commence une nouvelle partie
             lettres_trouvees.append(lettre)
         else:
             nb_coup -= 1  # Si la lettre n'est pas dans le mot on enlève un coup
-
     if checked(mot, lettres_trouvees):
         rejouer = input("Bravo, le mot était bien {}"
                         ", voulez vous rejouer ? [oui/non] : ".format(mot))
