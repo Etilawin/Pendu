@@ -7,6 +7,7 @@ import string
 
 def cls():
     """ Efface l'écran """
+    # Petite ligne pour être cross-plateform
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -21,7 +22,7 @@ def clear_word(ligne):
                     'y': ['ÿ'],
                     'oe': ['œ'],
                     '': ['\n']}
-        # On supprime d'abord les accents'
+        # On supprime d'abord les accents
         for (char, accented_chars) in accents.items():
             for accented_char in accented_chars:
                 ligne = ligne.replace(accented_char, char)
@@ -35,7 +36,7 @@ def clear_word(ligne):
 def get_mot(liste):
     """ Récupère un mot au hasard dans une liste et le rend utilisable
         pour le pendu"""
-    r = random.randint(0, len(liste))
+    r = random.randint(0, len(liste))  # Nbr aléatoire
     try:
         mot = liste[r].decode("latin-1")  # On le décode correctement
     except:  # Pas besoin de le décoder
@@ -45,7 +46,8 @@ def get_mot(liste):
 
 def checked(mot, lettres_trouvees):
     """ Vérifie si toutes les lettres d'un mot sont trouvées """
-    for l in mot:
-        if l not in lettres_trouvees:
+    for l in mot:  # On parcourt le mot
+        if l not in lettres_trouvees:  # Si une seule lettre n'est pas dans les
+                                       # lettres trouvées on retourne FAUX
             return False
     return True
