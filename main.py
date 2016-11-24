@@ -40,7 +40,7 @@ while replay:  # On commence une nouvelle partie
     print(welcome)
     nb_joueur = int(input('Veuillez entrer le nombre de joueurs [1/2] : '))
     if nb_joueur != 1 and nb_joueur != 2:  # On vérifie l'entrée
-        continue # On le force à bien répondre
+        continue  # On le force à bien répondre
     difficulty = input('Veuillez entrer la difficulté'
                        ' [facile/moyen/difficile] : ')
     # Methode lower pour éviter les erreurs de majuscule
