@@ -129,7 +129,7 @@ while replay:  # On commence une nouvelle partie
         print(perdu)
         rejouer = input("Mince vous n'avez pas trouvé le mot {},"
                         " voulez vous rejouer ? [oui/non] : ".format(mot))
-    # JE DOIS VRAIMENT EXPLIQUER CA?
+    # JE DOIS VRAIMENT EXPLIQUER CA? VRAIMENT?
     if rejouer.lower() != "oui":
         replay = False
 
